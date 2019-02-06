@@ -12,8 +12,23 @@ while(True):
     sumX = mask.sum(axis=0)
     mulX = np.multiply(sumX,np.arange(0,len(sumX)))
     comX = np.sum(mulX)/A
-    print(np.sum(mulX),comX,len(mask[0]))
-    cv2.imshow('Frame', mask)
+    
+    sumY = mask.sum(axis=1)
+    mulY = np.multiply(sumY,np.arange(0, len(sumY)))
+    comY = np.sum(mulY)/A
+    if comY > 0:
+        pass
+    else:
+        comY = 0
+    if comX > 0:
+        pass
+    else:
+        comX = 0
+    
+    #print(comX,comY)
+    #incolor = cv2.cvtColor(mask,cv2.COLOR_GRAY2BGR)
+    cv2.circle(frame, (int(comX),int(comY)),5, [0,0,255],5)
+    cv2.imshow('Frame', frame)
     #print(frame)
     
     if cv2.waitKey(1) & 0xFF == ord('q'):
